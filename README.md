@@ -33,7 +33,10 @@ lottie: ^3.1.0 - For incorporating Lottie animations.
 connectivity_plus: ^5.0.2 - For checking network connectivity status.
 
 
-#Test Dependencies\n
-bloc_test: ^9.1.6 - For testing BLoC components.\n
-build_runner: ^2.4.8 - For generating code during the build process.\n
+#Test Dependencies
+
+bloc_test: ^9.1.6 - For testing BLoC components.
+
+build_runner: ^2.4.8 - For generating code during the build process.
+
 mocktail: ^1.0.3 - For creating mocks during testing.
