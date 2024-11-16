@@ -130,14 +130,14 @@ jobs:
         run: |
           flutter build ios --no-codesign
           cd build/ios/iphoneos
-          mkdir build/ios_archive
-          cd build/ios_archive
+          mkdir ios_archive
+          cd ios_archive
           ln -s ../Runner.app
           cd ..
-          zip -r app.ipa build/ios_archive
+          zip -r app.ipa ios_archive
 
       - name: Upload IPA as artifact
         uses: actions/upload-artifact@v3
         with:
           name: ios-ipa
-          path: build/ios_archive/
+          path: ios_archive/
