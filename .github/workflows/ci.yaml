@@ -16,7 +16,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Fetch latest changes
-        run: git fetch origin main:main
+        run: git fetch origin main:main > /dev/null 2>&1
+        with:
+          token: ${{ secrets.TOKEN }}
 
       - name: Check Flutter project version
         run: |
