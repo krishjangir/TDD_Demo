@@ -140,4 +140,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ios-ipa
-          path: ios_archive/
+          path: build/ios/iphoneos/ios_archive/
