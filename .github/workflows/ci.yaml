@@ -129,6 +129,16 @@ jobs:
       - name: Build iOS
         run: flutter build ios --release --no-codesign
 
+      - name: Debug Build Output
+        run: ls -R build/ios/
+
+      - name: Verify IPA Exists
+        run: |
+          if [ ! -f build/ios/ipa/*.ipa ]; then
+            echo "No .ipa file found. Check the Flutter build logs.";
+            exit 1;
+          fi
+
       - name: Archive IPA
         run: |
           mkdir -p build/ios_archive
