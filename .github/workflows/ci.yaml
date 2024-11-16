@@ -92,6 +92,22 @@ jobs:
       - name: Build App Bundle
         run: flutter build appbundle
 
+      - name: Archive APK
+        run: |
+          mkdir -p build/android_archive
+          cp build/app/outputs/flutter-apk/app-release.apk build/android_archive/
+
+      - name: Archive App Bundle
+        run: |
+          mkdir -p build/android_archive
+          cp build/app/outputs/bundle/release/app-release.aab build/android_archive/
+
+      - name: Upload APK and AAB as artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-builds
+          path: build/android_archive/
+
   build-ios:
     needs: test
     runs-on: macos-latest
@@ -112,3 +128,14 @@ jobs:
 
       - name: Build iOS
         run: flutter build ios --release --no-codesign
+
+      - name: Archive IPA
+        run: |
+          mkdir -p build/ios_archive
+          cp build/ios/ipa/*.ipa build/ios_archive/
+
+      - name: Upload IPA as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ios-ipa
+          path: build/ios_archive/
