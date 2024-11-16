@@ -129,23 +129,7 @@ jobs:
       - name: Build iOS
         run: flutter build ios --release --no-codesign
 
-      - name: Debug Build Output
-        run: ls -R build/ios/
-
-      - name: Verify IPA Exists
-        run: |
-          if [ ! -f build/ios/iphoneos/app.ipa ]; then
-            echo "No .ipa file found at build/ios/iphoneos/app.ipa.";
-            exit 1;
-          fi
-
-      - name: Archive IPA
-        run: |
-          mkdir -p build/ios_archive
-          cp build/ios/iphoneos/app.ipa build/ios_archive/
-
-      - name: Upload IPA as artifact
-        uses: actions/upload-artifact@v3
+      - name: Archive IPA as artifacts
+        uses: ncipollo/release-action@v1
         with:
-          name: ios-ipa
-          path: build/ios_archive/
+          artifacts: "build/ios/iphoneos/app.ipa"
