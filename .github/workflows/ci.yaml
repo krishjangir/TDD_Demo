@@ -4,13 +4,16 @@ on:
   pull_request:
     branches: [ "main" ]
 
+  push:
+    branches: [ "main" ]
+
 jobs:
 
   version-check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Fetch latest changes
         run: git fetch origin main:main > /dev/null 2>&1
@@ -49,7 +52,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -69,10 +72,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '11'
@@ -103,7 +106,7 @@ jobs:
           cp build/app/outputs/bundle/release/app-release.aab build/android_archive/
 
       - name: Upload APK and AAB as artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-builds
           path: build/android_archive/
@@ -114,7 +117,7 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -137,7 +140,7 @@ jobs:
           zip -r app.ipa ios_archive
 
       - name: Upload IPA as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ios-ipa
           path: build/ios/iphoneos/ios_archive/
