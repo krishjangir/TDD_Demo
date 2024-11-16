@@ -136,7 +136,13 @@ jobs:
           cd ..
           zip -r app.ipa Payload
 
-      - name: Archive IPA as artifacts
-        uses: ncipollo/release-action@v1
+      - name: Archive IPA
+        run: |
+          mkdir -p build/ios_archive
+          cp build/ios/iphoneos/app.ipa build/ios_archive/
+
+      - name: Upload IPA as artifact
+        uses: actions/upload-artifact@v3
         with:
-          artifacts: "build/ios/iphoneos/app.ipa"
+          name: ios-ipa
+          path: build/ios_archive/
